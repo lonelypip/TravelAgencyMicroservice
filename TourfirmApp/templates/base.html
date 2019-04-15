@@ -1,0 +1,30 @@
+{% load static %}
+<!doctype html>
+<html lang="kz">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport"
+         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <link rel="shortcut icon" href="/media/img/favico/voyage.ico" type="image/x-icon">
+   <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+   <link rel="stylesheet" href="{% static 'css/fotorama.css' %}">
+   <link rel="stylesheet" href="{% static 'css/style.css' %}">
+   {% block links %}
+   {% endblock %}
+   <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+   <a href="{% url 'cart_url' %}">
+      <div class="cart">
+         <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+      </div>
+      <a class="cart-count"><span id="cart_count">{{ cart.items.count }}</span></a>
+   </a>
+   {% block content %}
+   {% endblock %}
+   <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+   <script src="{% static 'js/fotorama.js' %}"></script>
+   <script src="{% static 'js/custom.js' %}"></script>
+</body>
+</html>

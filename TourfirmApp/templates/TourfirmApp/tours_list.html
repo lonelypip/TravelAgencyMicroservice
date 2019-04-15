@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block links %}
+<link rel="stylesheet" href="{% static 'css/tour.css' %}">
+{% endblock links %}
+{% block title %}TOO Sholpan - Tours{% endblock %}
+
+{% block content %}
+   <div id="toTop">
+         <i class="fa fa-chevron-up" aria-hidden="true"></i>
+	</div>
+
+	<div class="tour-header tour-banner-head">
+		<div class="wrapper">
+			<div class="tour-nav flex-justify"">
+				<div class=" logo logo-tour">
+					<a class="topLink" href="{% url 'home_url' %}">Sholpan</a>
+				</div>
+
+				<button class="menu-toggle">
+					<span></span>
+					<span></span>
+					<span></span>
+				</button>
+
+				<ul class="menu tour-menu">
+					<li>
+						<a class="topLink" href="{% url 'home_url' %}">Басты бет</a>
+					</li>
+					<li>
+						<a class="topLink" href="#tour-list">Турлар</a>
+					</li>
+					<li>
+						<a class="topLink" href="{% url 'home_url' %}">Галерея</a>
+					</li>
+					<li>
+						<a class="topLink" href="{% url 'home_url' %}">Мәлімет</a>
+					</li>
+					<li>
+						<a class="topLink" href="#footer">Бізбен байланысу</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<section class="tour-banner" style="background-image: url('/media/img/tour-bg.jpg');">
+		<div class="wrapper">
+			<div class="tour-banner__title">
+				<h1>Барлық турлар сіз үшін</h1>
+				<p>120 туралар табылды</p>
+			</div>
+		</div>
+	</section>
+
+	<section id="tour-list" class="tour-list">
+		<div class="wrapper">
+			<h2 class="tour-list-title">Турлар</h2>
+			<div class="tour-list-box">
+            {% for country in countries %}
+               <div class="tour-list__item">
+                  <div class="tour-list__img">
+                     <img src="{{ country.main_image.url }}" alt="img">
+                  </div>
+
+                  <div class="tour-list__info">
+                     <p class="tour-list__info__date">Сәуір, 14 2017</p>
+                     <h3 class="tour-list__info__title">{{ country.name }}</h3>
+                     <p class="tour-list__info__desc">
+                        {{ country.sities }}<br>
+                        {{ country.description|striptags|truncatechars:200 }}
+                     </p>
+							<p style="margin-top:20px;font-size: 18px;">Бағасы: <b>{{ country.price }}</b></p>
+                     <a href="{{ country.get_absolute_url }}">Толығырақ</a>
+                  </div>
+               </div>
+            {% endfor %}
+
+			</div>
+		</div>
+	</section>
+
+	<footer id="footer">
+		<div class="wrapper">
+			<div class="footer-desc">
+				<div class="footer-desc__item">
+					<div class="footer-logo">
+						<a href="#">Sholpan</a>
+					</div>
+
+					<p class="text__desc">
+						2010 жылдан бастап клиенттерімізді бақытты
+						қылып, жоғары сапада қызмет етудеміз, әр
+						энергиямызды клиентімізге қуанышта арнаудамыз
+					</p>
+				</div>
+
+				<div class="footer-desc__item">
+					<h4>Байланыс ақпараты</h4>
+
+					<ul class="contact-list">
+						<li class="text__desc">
+							<span>
+								<i class="fa fa-map-marker" aria-hidden="true"></i>
+							</span>
+							Қайым Мухамедханов көшесі, 14
+						</li>
+						<li class="text__desc">
+							<span>
+								<i class="fa fa-phone" aria-hidden="true"></i>
+							</span>
+							+7 778 787 7878
+						</li>
+						<li class="text__desc">
+							<span>
+								<i class="fa fa-envelope-o" aria-hidden="true"></i>
+							</span>
+							info@gmail.com
+						</li>
+					</ul>
+				</div>
+
+				<div class="footer-desc__item">
+					<h4>Әлеуметтік желілерге қосылыңыз</h4>
+
+					<ul class="follow-list">
+						<li>
+							<a class="text__desc" href="#">
+								<i class="fa fa-vk" aria-hidden="true"></i>
+							</a>
+							<a class="text__desc" href="#">
+								<i class="fa fa-instagram" aria-hidden="true"></i>
+							</a>
+							<a class="text__desc" href="#">
+								<i class="fa fa-facebook" aria-hidden="true"></i>
+							</a>
+							<a class="text__desc" href="#">
+								<i class="fa fa-twitter" aria-hidden="true"></i>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
+{% endblock content %}

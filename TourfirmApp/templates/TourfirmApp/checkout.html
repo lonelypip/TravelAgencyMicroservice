@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block links %}
+<link rel="stylesheet" href="{% static 'css/tour.css' %}">
+{% endblock links %}
+{% block title %}Предварительный заказ{% endblock %}
+
+
+{% block content %}
+   <div class="tour-header tour-banner-head">
+      <div class="wrapper">
+         <div class="tour-nav flex-justify"">
+            <div class=" logo logo-tour">
+               <a class="topLink" href="{% url 'home_url' %}">Sholpan</a>
+            </div>
+
+            <button class="menu-toggle">
+               <span></span>
+               <span></span>
+               <span></span>
+            </button>
+
+            <ul class="menu tour-menu">
+               <li>
+                  <a class="topLink" href="{% url 'home_url' %}">Басты бет</a>
+               </li>
+               <li>
+                  <a class="topLink" href="{% url 'tours_list_url' %}">Турлар</a>
+               </li>
+               <li>
+                  <a class="topLink" href="{% url 'home_url' %}">Галерея</a>
+               </li>
+               <li>
+                  <a class="topLink" href="{% url 'home_url' %}">Мәлімет</a>
+               </li>
+               <li>
+                  <a class="topLink" href="#footer">Бізбен байланысу</a>
+               </li>
+            </ul>
+         </div>
+      </div>
+   </div>
+
+   <div class="wrapper">
+      <br>
+      <br>
+      <br>
+      <h3>Ваш предварительный заказ</h3>
+      <br>
+      <br>
+      <br>
+      <table cellpadding="16" style="margin: 0 auto; width: 100%;" border="1" cellspacing="0">
+         <tr>
+            <td>Товар</td>
+            <td>Кол-во</td>
+            <td>Цена</td>
+            <td></td>
+         </tr>
+         {% for item in cart.items.all %}
+            <tr>
+               <td>{{ item.country.name }}</td>
+               <td>{{ item.qty }}</td>
+               <td>{{ item.item_total }} тенге</td>
+               <td></td>
+            </tr>
+         {% endfor %}
+         <tr>
+            <td><strong>Итого:</strong></td>
+            <td></td>
+            <td><strong>{{ cart.cart_total }} тенге</strong></td>
+            <td></td>
+         </tr>
+      </table>
+      <a href="{% url 'create_order_url' %}" class="btn">Оформить заказ</a>
+   </div>
+
+   <footer id="footer">
+      <div class="wrapper">
+         <div class="footer-desc">
+            <div class="footer-desc__item">
+               <div class="footer-logo">
+                  <a href="{% url 'home_url' %}">Sholpan</a>
+               </div>
+
+               <p class="text__desc">
+                  2010 жылдан бастап клиенттерімізді бақытты
+                  қылып, жоғары сапада қызмет етудеміз, әр
+                  энергиямызды клиентімізге қуанышта арнаудамыз
+               </p>
+            </div>
+
+            <div class="footer-desc__item">
+               <h4>Байланыс ақпараты</h4>
+
+               <ul class="contact-list">
+                  <li class="text__desc">
+                     <span>
+                        <i class="fa fa-map-marker" aria-hidden="true"></i>
+                     </span>
+                     Қайым Мухамедханов көшесі, 14
+                  </li>
+                  <li class="text__desc">
+                     <span>
+                        <i class="fa fa-phone" aria-hidden="true"></i>
+                     </span>
+                     +7 778 787 7878
+                  </li>
+                  <li class="text__desc">
+                     <span>
+                        <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                     </span>
+                     info@gmail.com
+                  </li>
+               </ul>
+            </div>
+
+            <div class="footer-desc__item">
+               <h4>Әлеуметтік желілерге қосылыңыз</h4>
+
+               <ul class="follow-list">
+                  <li>
+                     <a class="text__desc" href="#">
+                        <i class="fa fa-vk" aria-hidden="true"></i>
+                     </a>
+                     <a class="text__desc" href="#">
+                        <i class="fa fa-instagram" aria-hidden="true"></i>
+                     </a>
+                     <a class="text__desc" href="#">
+                        <i class="fa fa-facebook" aria-hidden="true"></i>
+                     </a>
+                     <a class="text__desc" href="#">
+                        <i class="fa fa-twitter" aria-hidden="true"></i>
+                     </a>
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </div>
+   </footer>
+
+
+{% endblock %}

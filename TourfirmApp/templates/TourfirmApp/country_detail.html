@@ -1,0 +1,239 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block links %}
+<link rel="stylesheet" href="{% static 'css/tour.css' %}">
+{% endblock links %}
+{% block title %}{{ country.name }}{% endblock %}
+{% block content %}
+	<div class="tour-header">
+		<div class="wrapper">
+			<div class="tour-nav flex-justify"">
+				<div class=" logo logo-tour">
+					<a class="topLink" href="{% url 'home_url' %}">Sholpan</a>
+				</div>
+
+				<button class="menu-toggle">
+					<span></span>
+					<span></span>
+					<span></span>
+				</button>
+
+				<ul class="menu tour-menu">
+					<li>
+						<a class="topLink" href="{% url 'home_url' %}">Басты бет</a>
+					</li>
+					<li>
+						<a class="topLink" href="{% url 'tours_list_url' %}">Турлар</a>
+					</li>
+					<li>
+						<a class="topLink" href="{% url 'home_url' %}">Галерея</a>
+					</li>
+					<li>
+						<a class="topLink" href="{% url 'home_url' %}">Мәлімет</a>
+					</li>
+					<li>
+						<a class="topLink" href="#footer">Бізбен байланысу</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="wrapper tour-wrap">
+		<div class="tour-box flex-justify-top">
+			<div class="tour-main-info">
+				<div class="tour-social">
+					<p class="tour-date">
+						<span>14</span>
+						APR
+					</p>
+					<ul class="tour-social__list">
+						<li>
+							<a href="#">
+								<i class="fa fa-instagram"></i>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<i class="fa fa-twitter"></i>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<i class="fa fa-google"></i>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<i class="fa fa-linkedin-square"></i>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<i class="fa fa-pinterest"></i>
+							</a>
+						</li>
+					</ul>
+				</div>
+
+				<div class="tour-info">
+					<div class="tour-info__title">
+						<h1>{{ country.name }}</h1>
+            		<p>Автор <span>{{ country.author }}</span></p>
+					</div>
+					{% if country.background_image %}
+						<div class="tour-info__picture">
+							<figure style="background-image: url('{{ country.background_image.url }}');"></figure>
+						</div>
+					{% endif %}
+
+					<div class="tour-info__img flex-justify-top flex-wrap">
+						{% if country.image_1 and country.image_2 and country.image_3 and country.image_4 %}
+							<div class="tour-info__img__item">
+								<img src="{{ country.image_1.url }}" alt="img">
+							</div>
+							<div class="tour-info__img__item">
+								<img src="{{ country.image_2.url }}" alt="img">
+							</div>
+
+							<div class="tour-info__img__item">
+								<img src="{{ country.image_3.url }}" alt="img">
+							</div>
+
+							<div class="tour-info__img__item">
+								<img src="{{ country.image_4.url }}" alt="img">
+							</div>
+						{% endif %}
+					</div>
+
+					<div class="tour-desc">
+						<h3 class="tour-desc__title">Тур жайлы мәлімет</h3>
+
+						<p class="tour-desc__place">{{ country.sities }}</p>
+
+						<p class="tour-desc__text">
+							{{ country.description }}
+						</p>
+						<p style="margin-top:20px;font-size: 18px;">Бағасы: <b>{{ country.price }}</b></p>
+						<a href="#" class="btn add_to_cart" data-slug="{{ country.slug }}">Добавить в корзину</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="tour-more">
+				<div class="tour-more__item">
+					<div class="tour-more__img">
+						<img src="{{ turkey.background_image.url }}" alt="img">
+					</div>
+
+					<div class="tour-more__date">
+						<p>Сәуір, 14 2017</p>
+					</div>
+
+					<div class="tour-more__title">
+						<h3>{{ turkey.name }}</h3>
+					</div>
+				</div>
+
+				<div class="tour-more__item">
+					<div class="tour-more__img">
+						<img src="{{ spain.background_image.url }}" alt="img">
+					</div>
+
+					<div class="tour-more__date">
+						<p>Сәуір, 14 2017</p>
+					</div>
+
+					<div class="tour-more__title">
+						<h3>{{ spain.name }}</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<footer id="footer">
+		<div class="wrapper">
+			<div class="footer-desc">
+				<div class="footer-desc__item">
+					<div class="footer-logo">
+						<a href="#">Sholpan</a>
+					</div>
+
+					<p class="text__desc">
+						2010 жылдан бастап клиенттерімізді бақытты
+						қылып, жоғары сапада қызмет етудеміз, әр
+						энергиямызды клиентімізге қуанышта арнаудамыз
+					</p>
+				</div>
+
+				<div class="footer-desc__item">
+					<h4>Байланыс ақпараты</h4>
+
+					<ul class="contact-list">
+						<li class="text__desc">
+							<span>
+								<i class="fa fa-map-marker" aria-hidden="true"></i>
+							</span>
+							Қайым Мухамедханов көшесі, 14
+						</li>
+						<li class="text__desc">
+							<span>
+								<i class="fa fa-phone" aria-hidden="true"></i>
+							</span>
+							+7 778 787 7878
+						</li>
+						<li class="text__desc">
+							<span>
+								<i class="fa fa-envelope-o" aria-hidden="true"></i>
+							</span>
+							info@gmail.com
+						</li>
+					</ul>
+				</div>
+
+				<div class="footer-desc__item">
+					<h4>Әлеуметтік желілерге қосылыңыз</h4>
+
+					<ul class="follow-list">
+						<li>
+							<a class="text__desc" href="#">
+								<i class="fa fa-vk" aria-hidden="true"></i>
+							</a>
+							<a class="text__desc" href="#">
+								<i class="fa fa-instagram" aria-hidden="true"></i>
+							</a>
+							<a class="text__desc" href="#">
+								<i class="fa fa-facebook" aria-hidden="true"></i>
+							</a>
+							<a class="text__desc" href="#">
+								<i class="fa fa-twitter" aria-hidden="true"></i>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+	<script>
+		$(document).ready(function(){
+			$('.add_to_cart').on('click', function(e){
+				e.preventDefault()
+				country_slug = $(this).attr('data-slug')
+				console.log(country_slug)
+				data = {
+					country_slug: country_slug
+				}
+				$.ajax({
+					type: "GET",
+					url: '{% url "add_to_cart_url" %}',
+					data: data,
+					success: function(data){
+						$("#cart_count").html(data.cart_total)
+					}
+				})
+			})
+		})
+	</script>
+{% endblock content %}
