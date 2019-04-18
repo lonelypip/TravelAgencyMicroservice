@@ -166,26 +166,21 @@ def order_create_view(request):
       form = OrderForm(request.POST)
       if form.is_valid():
          new_order = Order()
-         new_order.user = request.user
+         new_order.items = cart
          new_order.first_name = form.cleaned_data['name']
          new_order.last_name = form.cleaned_data['last_name']
          new_order.phone = form.cleaned_data['phone']
-         if form.cleaned_data['address']:
-            new_order.address = form.cleaned_data['address']
-         else:
-            new_order.address = ''
+         new_order.address = form.cleaned_data['address']
          new_order.buying_type = form.cleaned_data['buying_type']
-         if form.cleaned_data['comments']:
-            new_order.comments = form.cleaned_data['comments']
-         else:
-            new_order.comments = ''
+         new_order.comment = form.cleaned_data['comment']
          new_order.total = cart.cart_total
          new_order.save()
          del request.session['cart_id']
          del request.session['total']
-         messages.success(request, f'Ваш комментарий успешно добавлен')
+         messages.success(request, f'Тапсырыс сәтті қабылданды! Қоңырауды күтіңіз')
          return render(request, 'TourfirmApp/order.html')
    context = {
-      'form': form
+      'form': form,
+      'cart': cart,
    }
    return render(request, 'TourfirmApp/order.html', context)

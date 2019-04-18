@@ -32,7 +32,7 @@ class CartItem(models.Model):
    item_total = models.DecimalField(max_digits=9, decimal_places=2, default=0.00)
 
    def __str__(self):
-      return "Cart item for country {0}".format(self.country.name)
+      return "Cart item #{0}".format(self.id)
 
 
 class Cart(models.Model):
@@ -78,8 +78,7 @@ ORDER_STATUS_CHOICES = {
 
 
 class Order(models.Model):
-   user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-   items = models.ManyToManyField(Cart)
+   items = models.OneToOneField(Cart, on_delete=models.CASCADE, verbose_name='Корзина #')
    total = models.DecimalField(max_digits=9, decimal_places=2, default=0.00)
    first_name = models.CharField(max_length=150)
    last_name = models.CharField(max_length=150)

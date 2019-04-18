@@ -8,6 +8,6 @@ class OrderForm(forms.Form):
    last_name = forms.CharField(label='Фамилияңыз')
    phone = forms.CharField(label='Нөмеріңіз')
    buying_type = forms.ChoiceField(widget=forms.Select(), label='Алу жолы', choices=([('self', 'Самовывоз'), ('delivery', 'Доставка')]))
-   address = forms.CharField(label='Адресіңіз', help_text='Адресіңізді міндетті түрде жазыңыз!')
+   address = forms.CharField(label='Адресіңіз', help_text='Адресіңізді міндетті түрде жазыңыз!', required=False)
    date = forms.DateField(widget=forms.SelectDateWidget(), label='Дата' ,initial=timezone.now())
-   comments = forms.CharField(widget=forms.Textarea, label='Комментариіңіз', required=False)
+   comment = forms.CharField(widget=forms.Textarea, label='Комментариіңіз', required=False)
