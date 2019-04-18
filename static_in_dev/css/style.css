@@ -28,8 +28,56 @@ body {
    margin: 70px 0px;
 }
 
+.my-cart h3 {
+   margin-bottom: 30px;
+   font-size: 23px;
+}
+
 .my-cart h4 {
    font-size: 22px;
+}
+
+.order-container,
+.empty-tours {
+   text-align: center;
+}
+
+.empty-tours a {
+   font-size: 17px;
+   color: #f36a2b;
+   margin-top: 10px;
+   display: block;
+   text-decoration: none;
+}
+
+.empty-tours a:hover {
+   text-decoration: underline;
+}
+
+.order-box {
+   margin-bottom: 50px;
+}
+
+.order-box input[type="submit"] {
+   -webkit-transition: all 0.3s;
+   border: none;
+   transition: all 0.3s;
+   display: inline-block;
+   color: #ffffff;
+   text-decoration: none;
+   font-size: 15px;
+   background: #572F59;
+   padding: 10px 45px;
+   border-radius: 30px;
+   outline: none;
+}
+
+.order-message {
+   margin-top: 50px;
+}
+
+.order-box input[type="submit"]:hover {
+   box-shadow: 5px 6px 29px -1px rgba(0, 0, 0, 0.24);
 }
 
 /* Partials */
@@ -628,7 +676,7 @@ footer .text__desc {
       margin-bottom: 10px;
       height: 20px;
       border-bottom: 1px solid #fff;
-	}
+   }
 	
 	header .menu-toggle {
       margin-top: 14px;
@@ -641,8 +689,12 @@ footer .text__desc {
       background: transparent;
       padding: 0;
       width: 37px;
-      outline: none;
+      outline: none !important;
 		z-index: 999;
+   }
+
+   .tour-header .menu-toggle.active span {
+      background: #fff;
    }
 
    .menu-toggle span {

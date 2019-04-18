@@ -76,12 +76,16 @@
                </tr>
             </table>
             <br>
-            <a href="{% url 'checkout_url' %}" class="btn">Алдын-ала тапсырыс</a>
+            <p class="order-container">
+               <a href="{% url 'checkout_url' %}" class="btn">Алдын-ала тапсырыс</a>
+            </p>
          </div>
       {% else %}
-         <div class="my-cart" style="text-align: center;">
+         <div class="my-cart empty-tours">
             <h4>Сіздің себетіңіз бос</h4>
-            <p><a href="{% url 'tours_list_url' %}">Турлар</a></p>
+            <p>
+               <a href="{% url 'tours_list_url' %}">Турлар тізімін көру</a>
+            </p>
          </div>
       {% endif %}
       <!-- <h3 class="cart-empty"></h3> -->

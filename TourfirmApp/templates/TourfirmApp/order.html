@@ -42,27 +42,31 @@
          </div>
       </div>
    </div>
-   {% if messages %}
-      {% for mess in messages %}
-         <div class="alert alert-success">
-            {{ mess }}
-         </div>
-      {% endfor %}
-   {% endif %}
-   <div class="wrapper">
-      {% if cart.cart_total == 0 %}
-         <h3 style="color:red;">Сіздің себетіңіз бос</h4>
-         <p><a href="{% url 'cart_url' %}">Себет</a></p>
-      {% else %}
-         <form action="" method="POST">
-            {% csrf_token %}
-            {{ form|crispy }}
-            <input type="submit">
-         </form>
+   <div class="order-box">
+      {% if messages %}
+         {% for mess in messages %}
+            <div class="alert alert-success order-message order-container">
+               {{ mess }}
+            </div>
+         {% endfor %}
       {% endif %}
+      <div class="wrapper">
+         {% if cart.cart_total == 0 %}
+            <div class="order-container order-message">
+               <h3 style="color:red;">Сіздің себетіңіз бос</h4>
+               <p><a href="{% url 'cart_url' %}">Себет</a></p>
+            </div>
+         {% else %}
+            <form action="" method="POST">
+               {% csrf_token %}
+               {{ form|crispy }}
+               <div class="order-container">
+                  <input type="submit">
+               </div>
+            </form>
+         {% endif %}
+      </div>
    </div>
-
-
 
    <footer id="footer">
       <div class="wrapper">

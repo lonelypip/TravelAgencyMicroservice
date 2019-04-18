@@ -42,36 +42,33 @@
    </div>
 
    <div class="wrapper">
-      <br>
-      <br>
-      <br>
-      <h3>Ваш предварительный заказ</h3>
-      <br>
-      <br>
-      <br>
-      <table cellpadding="16" style="margin: 0 auto; width: 100%;" border="1" cellspacing="0">
-         <tr>
-            <td>Товар</td>
-            <td>Кол-во</td>
-            <td>Цена</td>
-            <td></td>
-         </tr>
-         {% for item in cart.items.all %}
+      <div class="my-cart">
+         <h3>Сіздің тапсырысыңыз</h3>
+
+         <table cellpadding="16" style="margin: 0 auto; width: 100%;" border="1" cellspacing="0">
             <tr>
-               <td>{{ item.country.name }}</td>
-               <td>{{ item.qty }}</td>
-               <td>{{ item.item_total }} тенге</td>
-               <td></td>
+               <td>Товар</td>
+               <td>Кол-во</td>
+               <td>Цена</td>
             </tr>
-         {% endfor %}
-         <tr>
-            <td><strong>Итого:</strong></td>
-            <td></td>
-            <td><strong>{{ cart.cart_total }} тенге</strong></td>
-            <td></td>
-         </tr>
-      </table>
-      <a href="{% url 'create_order_url' %}" class="btn">Заказ беру</a>
+            {% for item in cart.items.all %}
+               <tr>
+                  <td>{{ item.country.name }}</td>
+                  <td>{{ item.qty }}</td>
+                  <td>{{ item.item_total }} тенге</td>
+               </tr>
+            {% endfor %}
+            <tr>
+               <td><strong>Итого:</strong></td>
+               <td></td>
+               <td><strong>{{ cart.cart_total }} тенге</strong></td>
+            </tr>
+         </table>
+         
+         <p class="order-container">
+            <a href="{% url 'create_order_url' %}" class="btn">Тапсырыс жасау</a>
+         </p>
+      </div>
    </div>
 
    <footer id="footer">
