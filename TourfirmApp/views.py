@@ -9,7 +9,7 @@ from django.contrib import messages
 
 
 def home(request):
-   countries = Country.objects.all()
+   countries = Country.objects.filter(better=True)
    return render(request, 'TourfirmApp/index.html', context={'countries':countries})
 
 class CountryDetail(View):

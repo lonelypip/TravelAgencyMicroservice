@@ -18,7 +18,8 @@ class Country(models.Model):
    image_3 = models.ImageField(upload_to='images/', blank=True)
    image_4 = models.ImageField(upload_to='images/', blank=True)
    sities = models.CharField(max_length=100)
-
+   better = models.BooleanField(default=False)
+   
    def __str__(self):
       return self.name
 
