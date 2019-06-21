@@ -5,8 +5,9 @@ from django.views.generic import View
 from decimal import Decimal
 from .forms import OrderForm
 from django.contrib import messages
-
-
+import requests
+import json
+import pprint
 
 def home(request):
    countries = Country.objects.filter(better=True)
@@ -27,8 +28,10 @@ class CountryDetail(View):
       turkey = Country.objects.get(id=1)
       spain = Country.objects.get(id=2)
       country = get_object_or_404(Country, slug__iexact=slug)
+      r = requests.get(f'http://localhost:8000/api/shop/country/{country.slug}')
+      pprint.pprint(r.json())
       return render(request, 'TourfirmApp/country_detail.html', context={
-         'country': country,
+         'country': r.json(),
          'turkey': turkey,
          'spain': spain,
          'cart':cart,
@@ -47,8 +50,8 @@ class ToursList(View):
          cart_id = cart.id
          request.session['cart_id'] = cart_id
          cart = Cart.objects.get(id=cart_id)
-      countries = Country.objects.all()
-      return render(request, 'TourfirmApp/tours_list.html', context={'countries':countries, 'cart': cart,})
+      r = requests.get('http://localhost:8000/api/shop/country/')
+      return render(request, 'TourfirmApp/tours_list.html', context={'countries':r.json(), 'cart': cart,})
 
 
 def cart_view(request):
@@ -165,16 +168,20 @@ def order_create_view(request):
    if request.method == 'POST':
       form = OrderForm(request.POST)
       if form.is_valid():
-         new_order = Order()
-         new_order.items = cart
-         new_order.first_name = form.cleaned_data['name']
-         new_order.last_name = form.cleaned_data['last_name']
-         new_order.phone = form.cleaned_data['phone']
-         new_order.address = form.cleaned_data['address']
-         new_order.buying_type = form.cleaned_data['buying_type']
-         new_order.comment = form.cleaned_data['comment']
-         new_order.total = cart.cart_total
-         new_order.save()
+         data = {
+            'items' : cart,
+            'first_name' : form.cleaned_data['name'],
+            'last_name' : form.cleaned_data['last_name'],
+            'phone' : form.cleaned_data['phone'],
+            'address' : form.cleaned_data['address'],
+            'buying_type' : form.cleaned_data['buying_type'],
+            'comment' : form.cleaned_data['comment'],
+            'total' : cart.cart_total
+         }
+         print(data['buying_type'])
+         r = requests.post('http://localhost:8000/api/shop/order/create/', data)
+         print(r)
+         print(r.json())
          del request.session['cart_id']
          del request.session['total']
          messages.success(request, f'Тапсырыс сәтті қабылданды! Қоңырауды күтіңіз')

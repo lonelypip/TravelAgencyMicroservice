@@ -2,6 +2,8 @@ from django.db import models
 from django.shortcuts import reverse
 from decimal import Decimal
 from django.conf import settings
+import requests
+import json
 # Create your models here.
 
 
@@ -85,7 +87,7 @@ class Order(models.Model):
    last_name = models.CharField(max_length=150)
    phone = models.CharField(max_length=30)
    address = models.CharField(max_length=255, blank=True)
-   buying_type = models.CharField(max_length=40, choices=(('Самовывоз', 'Самовывоз'), ('Доставка', 'Доставка')), default="Самовывоз")
+   buying_type = models.CharField(max_length=40, choices=(('Самовывоз', 'Самовывоз'), ('Доставка', 'Доставка')), default="Самовывоз", blank=True)
    date = models.DateTimeField(auto_now_add=True)
    comment = models.TextField(blank=True)
    status = models.CharField(max_length=100, choices=ORDER_STATUS_CHOICES)
